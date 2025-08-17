@@ -2,41 +2,53 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
-All colors MUST be HSL.
-*/
+/* Stellar Blockchain Design System - Space-themed financial interface */
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
-
-    --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
-
-    --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
-
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
-
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
-
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
-
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
-
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
-
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
-
-    --radius: 0.5rem;
+    /* Stellar Blockchain Color Palette */
+    --stellar-deep-space: 215 70% 11%;     /* #030D2F deep space blue */
+    --stellar-navy: 215 61% 14%;           /* #0B1B3A input background */
+    --stellar-aqua: 194 90% 47%;           /* #08B5E5 bright aqua accent */
+    --stellar-teal: 180 66% 47%;           /* #28C1C0 teal accent */
+    --stellar-white: 0 0% 100%;            /* #FFFFFF brand white */
+    --stellar-gray: 0 0% 88%;              /* #E0E0E0 light gray text */
+    
+    /* Design System Tokens */
+    --background: var(--stellar-deep-space);
+    --foreground: var(--stellar-white);
+    
+    --card: var(--stellar-navy);
+    --card-foreground: var(--stellar-white);
+    
+    --primary: var(--stellar-aqua);
+    --primary-foreground: var(--stellar-white);
+    
+    --secondary: var(--stellar-teal);
+    --secondary-foreground: var(--stellar-white);
+    
+    --muted: var(--stellar-navy);
+    --muted-foreground: var(--stellar-gray);
+    
+    --accent: var(--stellar-aqua);
+    --accent-foreground: var(--stellar-white);
+    
+    --border: var(--stellar-navy);
+    --input: var(--stellar-navy);
+    --ring: var(--stellar-aqua);
+    
+    --radius: 0.75rem;
+    
+    /* Custom Stellar Gradients */
+    --gradient-stellar: linear-gradient(135deg, hsl(var(--stellar-aqua)), hsl(var(--stellar-teal)));
+    --gradient-space: linear-gradient(180deg, hsl(var(--stellar-deep-space)), hsl(var(--stellar-navy)));
+    
+    /* Stellar Shadows */
+    --shadow-stellar: 0 10px 30px -10px hsl(var(--stellar-aqua) / 0.3);
+    --shadow-glow: 0 0 20px hsl(var(--stellar-aqua) / 0.2);
+    
+    /* Animations */
+    --transition-stellar: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 
     --sidebar-background: 0 0% 98%;
 

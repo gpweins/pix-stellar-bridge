@@ -52,6 +52,14 @@ export default {
 					DEFAULT: 'hsl(var(--card))',
 					foreground: 'hsl(var(--card-foreground))'
 				},
+				stellar: {
+					'deep-space': 'hsl(var(--stellar-deep-space))',
+					'navy': 'hsl(var(--stellar-navy))',
+					'aqua': 'hsl(var(--stellar-aqua))',
+					'teal': 'hsl(var(--stellar-teal))',
+					'white': 'hsl(var(--stellar-white))',
+					'gray': 'hsl(var(--stellar-gray))'
+				},
 				sidebar: {
 					DEFAULT: 'hsl(var(--sidebar-background))',
 					foreground: 'hsl(var(--sidebar-foreground))',
