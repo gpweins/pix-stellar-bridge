@@ -63,17 +63,18 @@ const TransferMoney = () => {
   };
 
   return (
-    <div className="min-h-screen bg-background flex items-center justify-center p-4">
-      <div className="w-full max-w-md mx-auto space-y-8">
-        {/* Header */}
-        <div className="text-center space-y-2">
-          <h1 className="text-3xl font-bold text-foreground">
-            Transfer money
-          </h1>
-          <p className="text-muted-foreground text-sm leading-relaxed">
-            Fill in the fields below or use camera phone to scan code
-          </p>
-        </div>
+    <div className="min-h-screen bg-stellar-gray flex items-center justify-center p-4">
+      <div className="w-full max-w-md mx-auto">
+        <div className="bg-card rounded-2xl shadow-lg border border-border p-8 space-y-8">
+          {/* Header */}
+          <div className="text-center space-y-2">
+            <h1 className="text-3xl font-bold text-foreground">
+              Transfer money
+            </h1>
+            <p className="text-muted-foreground text-sm leading-relaxed">
+              Fill in the fields below or use camera phone to scan code
+            </p>
+          </div>
 
         {/* PIX Key Input */}
         <div className="space-y-3">
@@ -121,6 +122,7 @@ const TransferMoney = () => {
           >
             Done
           </Button>
+        </div>
         </div>
       </div>
     </div>
