@@ -15,7 +15,7 @@ const TransferMoney = () => {
       toast({
         title: "Key pasted successfully",
         description: "PIX key has been pasted from clipboard",
-        className: "bg-card border-stellar-aqua/30 text-foreground",
+        className: "bg-card border-stellar-gold/30 text-foreground",
       });
     } catch (err) {
       toast({
@@ -41,7 +41,7 @@ const TransferMoney = () => {
     toast({
       title: "Sending to Stellar Network",
       description: `PIX key ${pixKey} is being processed via Freighter wallet on Stellar Blockchain`,
-      className: "bg-card border-stellar-aqua/30 text-foreground",
+      className: "bg-card border-stellar-gold/30 text-foreground",
     });
 
     // Simulate blockchain processing
@@ -49,7 +49,7 @@ const TransferMoney = () => {
       toast({
         title: "Transaction confirmed",
         description: "PIX transfer initiated successfully on Stellar network",
-        className: "bg-stellar-teal/20 border-stellar-teal/50 text-foreground",
+        className: "bg-stellar-black/20 border-stellar-black/50 text-foreground",
       });
     }, 2000);
   };
@@ -58,7 +58,7 @@ const TransferMoney = () => {
     toast({
       title: "Camera feature",
       description: "QR code scanning will be available soon",
-      className: "bg-card border-stellar-aqua/30 text-foreground",
+      className: "bg-card border-stellar-gold/30 text-foreground",
     });
   };
 
