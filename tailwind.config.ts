@@ -25,18 +25,18 @@ export default {
         background: "var(--background)",
         foreground: "var(--foreground)",
 
-        // Remapped to Stellar brand colors
+        // Official Stellar brand colors - Gold Primary, Black Secondary
         primary: {
-          DEFAULT: "var(--stellar-gold)",
-          foreground: "var(--stellar-gray)",
+          DEFAULT: "hsl(var(--stellar-gold))",
+          foreground: "hsl(var(--stellar-black))",
         },
         secondary: {
-          DEFAULT: "var(--stellar-black)",
-          foreground: "var(--stellar-white)",
+          DEFAULT: "hsl(var(--stellar-black))",
+          foreground: "hsl(var(--stellar-white))",
         },
         accent: {
-          DEFAULT: "var(--stellar-gold)",
-          foreground: "var(--stellar-white)",
+          DEFAULT: "hsl(var(--stellar-teal))",
+          foreground: "hsl(var(--stellar-white))",
         },
 
         destructive: {
@@ -56,10 +56,13 @@ export default {
           foreground: "var(--card-foreground)",
         },
         stellar: {
-          gold: "var(--stellar-gold)",
-		  black: "var(--stellar-black)",
-          white: "var(--stellar-white)",
-          gray: "var(--stellar-gray)",
+          gold: "hsl(var(--stellar-gold))",
+          black: "hsl(var(--stellar-black))",
+          white: "hsl(var(--stellar-white))",
+          gray: "hsl(var(--stellar-gray))",
+          lilac: "hsl(var(--stellar-lilac))",
+          teal: "hsl(var(--stellar-teal))",
+          navy: "hsl(var(--stellar-navy))",
         },
         sidebar: {
           DEFAULT: "var(--sidebar-background)",

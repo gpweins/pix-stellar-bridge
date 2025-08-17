@@ -18,7 +18,7 @@ const buttonVariants = cva(
           "bg-secondary text-secondary-foreground hover:bg-secondary/80 shadow-lg",
         ghost: "hover:bg-accent hover:text-accent-foreground",
         link: "text-primary underline-offset-4 hover:underline",
-        stellar: "bg-stellar-gold text-stellar-white hover:bg-stellar-gold/90 shadow-[var(--shadow-stellar)] transition-[var(--transition-stellar)]",
+        stellar: "bg-stellar-gold text-stellar-black hover:bg-stellar-gold/90 shadow-[var(--shadow-stellar)] transition-[var(--transition-stellar)]",
         "stellar-secondary": "bg-stellar-black text-stellar-white hover:bg-stellar-black/90 shadow-lg transition-[var(--transition-stellar)]",
         "stellar-paste": "bg-stellar-gold/20 text-stellar-gold border border-stellar-gold/30 hover:bg-stellar-gold/30 transition-[var(--transition-stellar)]",
       },

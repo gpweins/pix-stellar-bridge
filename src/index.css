@@ -2,48 +2,57 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Stellar Blockchain Design System - Space-themed financial interface */
+/* Stellar Official Brand Design System */
 
 @layer base {
   :root {
-    /* Stellar Blockchain Color Palette */
-    --stellar-gold: #FFD700;  /* Generous Gold */
-    --stellar-black: #000000; /* Black */
-    --stellar-white: #FFFFFF; /* White */
-    --stellar-gray: #E5E5E5;  /* Light Gray */
+    /* Official Stellar Brand Color Palette */
+    --stellar-gold: 42 94% 56%;     /* Generous Gold #FDDA24 */
+    --stellar-black: 0 0% 6%;       /* Black #0F0F0F */
+    --stellar-white: 214 20% 97%;   /* White #F6F7F8 */
+    --stellar-gray: 40 22% 84%;     /* Warm Grey #D6D2C4 */
+    --stellar-lilac: 257 48% 78%;   /* Lilac #B7ACE8 */
+    --stellar-teal: 190 100% 35%;   /* Teal #00A7B5 */
+    --stellar-navy: 208 100% 18%;   /* Navy Blue #002E5D */
 
-    /* Design System Tokens */
-    --background: var(--stellar-white);
-    --foreground: var(--stellar-black);
+    /* Design System Tokens - Gold Primary, Black Secondary */
+    --background: hsl(var(--stellar-white));
+    --foreground: hsl(var(--stellar-black));
     
-    --card: var(--stellar-white);
-    --card-foreground: var(--stellar-gold);
+    --card: hsl(var(--stellar-white));
+    --card-foreground: hsl(var(--stellar-black));
     
-    --primary: var(--stellar-black);
-    --primary-foreground: var(--stellar-gold);
+    --primary: hsl(var(--stellar-gold));
+    --primary-foreground: hsl(var(--stellar-black));
     
-    --secondary: var(--stellar-gray);
-    --secondary-foreground: var(--stellar-black);
+    --secondary: hsl(var(--stellar-black));
+    --secondary-foreground: hsl(var(--stellar-white));
     
-    --muted: var(--stellar-black);
-    --muted-foreground: var(--stellar-gray);
+    --muted: hsl(var(--stellar-gray));
+    --muted-foreground: hsl(var(--stellar-black));
     
-    --accent: var(--stellar-black);
-    --accent-foreground: var(--stellar-white);
+    --accent: hsl(var(--stellar-teal));
+    --accent-foreground: hsl(var(--stellar-white));
     
-    --border: var(--stellar-black);
-    --input: var(--stellar-gold);
-    --ring: var(--stellar-gold);
+    --border: hsl(var(--stellar-gray));
+    --input: hsl(var(--stellar-white));
+    --ring: hsl(var(--stellar-gold));
+    
+    --destructive: 0 84% 60%;
+    --destructive-foreground: hsl(var(--stellar-white));
+    
+    --popover: hsl(var(--stellar-white));
+    --popover-foreground: hsl(var(--stellar-black));
     
     --radius: 0.75rem;
     
-    /* Custom Stellar Gradients */
-    --gradient-stellar: linear-gradient(135deg, var(--stellar-gold), var(--stellar-white));
-    --gradient-space: linear-gradient(180deg, var(--stellar-gold), var(--stellar-gray));
+    /* Official Stellar Gradients */
+    --gradient-stellar: linear-gradient(135deg, hsl(var(--stellar-gold)), hsl(var(--stellar-teal)));
+    --gradient-space: linear-gradient(180deg, hsl(var(--stellar-navy)), hsl(var(--stellar-black)));
     
     /* Stellar Shadows */
     --shadow-stellar: 0 10px 30px -10px hsl(var(--stellar-gold) / 0.3);
-    --shadow-glow: 0 0 20px hsl(var(--stellar-gold) / 0.2);
+    --shadow-glow: 0 0 20px hsl(var(--stellar-gold) / 0.4);
     
     /* Animations */
     --transition-stellar: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
