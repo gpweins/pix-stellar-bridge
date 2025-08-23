@@ -43,9 +43,10 @@ const TransferMoney = () => {
   };
 
   const handleCameraScan = () => {
-    // For now, navigate to confirm pay with placeholder data
-    navigate('/confirm-pay', {
-      state: { pixKey: pixKey.trim() || 'Scanned QR Code Data' }
+    toast({
+      title: "Camera feature",
+      description: "QR code scanning will be available soon",
+      className: "bg-card border-stellar-gold/30 text-foreground",
     });
   };
 
