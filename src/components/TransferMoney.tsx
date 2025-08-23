@@ -23,7 +23,7 @@ const TransferMoney = () => {
       toast({
         title: "Paste failed",
         description: "Unable to access clipboard",
-        variant: "destructive",
+        className: "bg-card border-stellar-gold/30 text-foreground",
       });
     }
   };
@@ -33,7 +33,7 @@ const TransferMoney = () => {
       toast({
         title: "PIX key required",
         description: "Please enter a PIX key before proceeding",
-        variant: "destructive",
+        className: "bg-card border-stellar-gold/30 text-foreground",
       });
       return;
     }
