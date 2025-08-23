@@ -2,11 +2,13 @@ import React, { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { useToast } from '@/hooks/use-toast';
+import { useNavigate } from 'react-router-dom';
 import { Camera, Copy } from 'lucide-react';
 
 const TransferMoney = () => {
   const [pixKey, setPixKey] = useState('');
   const { toast } = useToast();
+  const navigate = useNavigate();
 
   const handlePaste = async () => {
     try {
@@ -36,29 +38,14 @@ const TransferMoney = () => {
       return;
     }
 
-    console.log('PIX Key being sent to Stellar Blockchain:', pixKey);
-    
-    toast({
-      title: "Sending to Stellar Network",
-      description: `PIX key ${pixKey} is being processed via Freighter wallet on Stellar Blockchain`,
-      className: "bg-card border-stellar-gold/30 text-foreground",
-    });
-
-    // Simulate blockchain processing
-    setTimeout(() => {
-      toast({
-        title: "Transaction confirmed",
-        description: "PIX transfer initiated successfully on Stellar network",
-        className: "bg-stellar-black/20 border-stellar-black/50 text-foreground",
-      });
-    }, 2000);
+    // Navigate to confirm pay screen with PIX key data
+    navigate('/confirm-pay', { state: { pixKey } });
   };
 
   const handleCameraScan = () => {
-    toast({
-      title: "Camera feature",
-      description: "QR code scanning will be available soon",
-      className: "bg-card border-stellar-gold/30 text-foreground",
+    // For now, navigate to confirm pay with placeholder data
+    navigate('/confirm-pay', {
+      state: { pixKey: pixKey.trim() || 'Scanned QR Code Data' }
     });
   };
 
