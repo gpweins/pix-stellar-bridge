@@ -1,12 +1,14 @@
 import React, { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
+import { InputNumeric } from '@/components/ui/input-numeric';
 import { useToast } from '@/hooks/use-toast';
 import { useNavigate } from 'react-router-dom';
 import { Camera, Copy } from 'lucide-react';
 
 const TransferMoney = () => {
   const [pixKey, setPixKey] = useState('');
+  const [amount, setAmount] = useState('');
   const { toast } = useToast();
   const navigate = useNavigate();
 
@@ -38,8 +40,17 @@ const TransferMoney = () => {
       return;
     }
 
+    if (!amount.trim()) {
+      toast({
+        title: "Amount required",
+        description: "Please enter the amount in R$ before proceeding",
+        className: "bg-card border-stellar-gold/30 text-foreground",
+      });
+      return;
+    }
+
     // Navigate to confirm pay screen with PIX key data
-    navigate('/confirm-pay', { state: { pixKey } });
+    navigate('/confirm-pay', { state: { pixKey, amount } });
   };
 
   const handleCameraScan = () => {
@@ -64,7 +75,6 @@ const TransferMoney = () => {
             </p>
           </div>
 
-        {/* PIX Key Input */}
         <div className="space-y-3">
           <label htmlFor="pixKey" className="block text-sm font-medium text-foreground">
             Key Pix
@@ -87,6 +97,22 @@ const TransferMoney = () => {
               <Copy className="w-3 h-3 mr-1" />
               Paste
             </Button>
+          </div>
+          <label htmlFor="amount" className="block text-sm font-medium text-foreground">
+            Amount in R$ to transfer
+          </label>
+          <div className="relative">
+            <InputNumeric
+              value={amount}
+              onValueChange={(values) => setAmount(values.value) }
+              thousandSeparator={true}
+              prefix={'R$ '}
+              decimalScale={2}
+              fixedDecimalScale={true}
+              allowNegative={false}
+              placeholder="Enter amount"
+              className="bg-card text-foreground border-border pr-20 h-12 rounded-xl placeholder:text-muted-foreground/60"
+            />
           </div>
         </div>
 
