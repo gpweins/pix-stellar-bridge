@@ -1,16 +1,42 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { Info } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { InputNumeric } from '@/components/ui/input-numeric';
 import { useToast } from '@/hooks/use-toast';
 import { useNavigate } from 'react-router-dom';
 import { Camera, Copy } from 'lucide-react';
+import { connectFreighter } from "@/lib/wallet";
+import { isConnected } from "@stellar/freighter-api";
+import { ellipsis } from '@/lib/utils';
 
 const TransferMoney = () => {
   const [pixKey, setPixKey] = useState('');
   const [amount, setAmount] = useState('');
+  const [wallet, setWallet] = useState<string | null>(null);
+  const [summWallet, setSummWallet] = useState<string | null>(null);
+  const [walletReady, setWalletReady] = useState(false);
   const { toast } = useToast();
   const navigate = useNavigate();
+
+  // 🔑 Connect wallet on mount
+  useEffect(() => {
+    (async () => {
+      try {
+        const conn = await isConnected();
+        if (!conn.isConnected) {
+          throw new Error("Freighter not installed/enabled");
+        }
+        const { address } = await connectFreighter();
+        setWallet(address);
+        setSummWallet(ellipsis(address));
+
+        setWalletReady(true);
+      } catch {
+        setWalletReady(false);
+      }
+    })();
+  }, []);
 
   const handlePaste = async () => {
     try {
@@ -49,6 +75,15 @@ const TransferMoney = () => {
       return;
     }
 
+    if (!walletReady || !wallet) {
+      toast({
+        title: "Wallet not connected",
+        description: "Please connect Freighter first",
+        className: "bg-card border-stellar-gold/30 text-foreground",
+      });
+      return;
+    }
+
     // Navigate to confirm pay screen with PIX key data
     navigate('/confirm-pay', { state: { pixKey, amount } });
   };
@@ -62,7 +97,40 @@ const TransferMoney = () => {
   };
 
   return (
-    <div className="min-h-screen bg-stellar-gray flex items-center justify-center p-4">
+    <div className="min-h-screen bg-stellar-gray flex items-center justify-center p-4 relative">
+      {/* Overlay if wallet not connected */}
+      {!walletReady && (
+        <div className="absolute inset-0 bg-black/70 flex items-center justify-center z-50">
+          <div className="bg-card p-6 rounded-xl shadow-lg text-center max-w-sm">
+            <h2 className="text-lg font-semibold mb-2 text-foreground">
+              Freighter Wallet Required
+            </h2>
+            <p className="text-sm text-muted-foreground mb-4">
+              Please install and connect your Freighter wallet to continue.
+            </p>
+            <Button
+              variant="stellar"
+              onClick={async () => {
+                try {
+                  const { address } = await connectFreighter();
+                  setWallet(address);
+                  setWalletReady(true);
+                } catch {
+                  toast({
+                    title: "Connection failed",
+                    description: "Could not connect to Freighter",
+                    className: "bg-card border-stellar-gold/30 text-foreground",
+                  });
+                }
+              }}
+              className="w-full"
+            >
+              Connect Wallet
+            </Button>
+          </div>
+        </div>
+      )}
+
       <div className="w-full max-w-md mx-auto">
         <div className="bg-card rounded-2xl shadow-lg border border-border p-8 space-y-8">
           {/* Header */}
@@ -87,12 +155,14 @@ const TransferMoney = () => {
               value={pixKey}
               onChange={(e) => setPixKey(e.target.value)}
               className="bg-card text-foreground border-border pr-20 h-12 rounded-xl placeholder:text-muted-foreground/60"
+              disabled={!walletReady}
             />
             <Button
               variant="stellar-paste"
               size="sm"
               onClick={handlePaste}
               className="absolute right-2 top-1/2 -translate-y-1/2 h-8 px-3 rounded-lg"
+              disabled={!walletReady}
             >
               <Copy className="w-3 h-3 mr-1" />
               Paste
@@ -112,8 +182,17 @@ const TransferMoney = () => {
               allowNegative={false}
               placeholder="Enter amount"
               className="bg-card text-foreground border-border pr-20 h-12 rounded-xl placeholder:text-muted-foreground/60"
+              disabled={!walletReady}
             />
           </div>
+
+            <div className="flex items-start space-x-2 p-4 bg-stellar-black/10 rounded-lg">
+              <Info className="w-5 h-5 text-muted-foreground mt-0.5 flex-shrink-0" />
+              <p className="text-sm text-muted-foreground">
+                Connected wallet: <br />
+                {summWallet}
+              </p>
+            </div>
         </div>
 
         {/* Action Buttons */}
@@ -123,6 +202,7 @@ const TransferMoney = () => {
             size="lg"
             onClick={handleCameraScan}
             className="w-full h-14 rounded-xl text-base font-medium"
+            disabled={!walletReady}
           >
             <Camera className="w-5 h-5 mr-3" />
             Use Camera Phone To Scan Code
@@ -133,6 +213,7 @@ const TransferMoney = () => {
             size="lg"
             onClick={handleDone}
             className="w-full h-14 rounded-xl text-base font-medium"
+            disabled={!walletReady}
           >
             Done
           </Button>
